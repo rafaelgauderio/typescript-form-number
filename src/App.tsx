@@ -4,12 +4,12 @@ import './App.css'
 import { useState } from 'react'
 
 type FormData = {
-  age: number;
+  age?: number;
 }
 
 function App() {
 
-  const [formData, setFormData] = useState<FormData>({ age: 0 });
+  const [formData, setFormData] = useState<FormData>({ age: undefined });
 
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -36,7 +36,7 @@ function App() {
           name="age"
           type="text"
           placeholder="inform a number"
-          value={formData.age}
+          value={formData.age || ""} //se for undefined for preecher com strig vazia
           onChange={handleInputChange}
         >
 
