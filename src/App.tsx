@@ -23,7 +23,7 @@ function App() {
 
   function handleSubmitForm (event : any) {
     event.preventDefault();
-    alert(formData.age ? "inform age was " + formData.age  : Number.MAX_VALUE);
+    alert(formData.age ? "inform age was " + formData.age  :0);
 
   }
 
@@ -50,7 +50,7 @@ function App() {
         <input
           name="age"
           type="text"
-          placeholder="inform minimum value to filter data"
+          placeholder="inform mininum value to filter data"
           value={formData.age || ""} //se for undefined for preecher com strig vazia
           onChange={handleInputChange}
         >
