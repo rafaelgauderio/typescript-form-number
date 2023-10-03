@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -20,6 +21,20 @@ function App() {
     setFormData({...formData, [inputName] : inputValue });
   }
 
+  function handleSubmitForm (event : any) {
+    event.preventDefault();
+    alert(formData.age ? "inform age was " + formData.age  : Number.MAX_VALUE);
+
+  }
+
+  function cleanForm(event : any) {
+    event.preventDefault();
+    const inputValue = event.target.value;
+    const inputName = event.target.name ; 
+    setFormData({[inputName] : inputValue});  
+    
+  }
+
   return (
     <>
       <div>
@@ -31,16 +46,17 @@ function App() {
         </a>
       </div>
       <h1>Tratar campo numérico não prenchido em formulário react</h1>
-      <form>
+      <form onSubmit={handleSubmitForm}>
         <input
           name="age"
           type="text"
-          placeholder="inform a number"
+          placeholder="inform minimum value to filter data"
           value={formData.age || ""} //se for undefined for preecher com strig vazia
           onChange={handleInputChange}
         >
 
         </input>
+        <button onClick={cleanForm}>Clean Form</button>
         <button type="submit">Submit</button>
       </form>
 
