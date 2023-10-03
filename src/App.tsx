@@ -1,10 +1,24 @@
-import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import { useState } from 'react'
+
+type FormData = {
+  age: number;
+}
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [formData, setFormData] = useState<FormData>({ age: 0 });
+
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  function handleInputChange (event : any) {
+    const inputValue = event.target.value;
+    const inputName = event.target.name ; // age
+    // modificicando o input do form e mantendo o que já estiver preenchido
+    setFormData({...formData, [inputName] : inputValue });
+  }
 
   return (
     <>
@@ -16,18 +30,20 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h1>Tratar campo numérico não prenchido em formulário react</h1>
+      <form>
+        <input
+          name="age"
+          type="text"
+          placeholder="inform a number"
+          value={formData.age}
+          onChange={handleInputChange}
+        >
+
+        </input>
+        <button type="submit">Submit</button>
+      </form>
+
     </>
   )
 }
